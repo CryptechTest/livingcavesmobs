@@ -83,8 +83,8 @@ mobs:spawn({
 	interval = 10,
 	chance = 1, 
 	active_object_count = 4,
-	min_height = -400,
-	max_height = -200,
+	min_height = -11000,
+	max_height = -5000,
 
 		on_spawn = function(self, pos)
 

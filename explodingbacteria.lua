@@ -25,8 +25,6 @@ stepheight = 0,
 		{"textureexplodingbacteria.png"},
 
 	},
-sounds = {
-		random = "",},
 	makes_footstep_sound = false,
 	walk_velocity = 1.5,
 	run_velocity = 2,

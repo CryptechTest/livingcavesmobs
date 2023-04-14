@@ -1,7 +1,6 @@
 local S = minetest.get_translator("livingcavesmobs")
 
 mobs:register_mob("livingcavesmobs:flesheatingbacteria", {
-stepheight = 0,
 	type = "monster",
 	passive = false,
         attack_type = "dogfight",

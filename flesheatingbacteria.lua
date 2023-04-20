@@ -24,7 +24,7 @@ mobs:register_mob("livingcavesmobs:flesheatingbacteria", {
 	walk_velocity = 0.3,
 	run_velocity = 0.5,
 	runaway = false,
-	jump = fallse,
+	jump = false,
         jump_height = 0,
 	stepheight = 0,
 	stay_near = {"livingcaves:bacteriacave_trapstone", 3},

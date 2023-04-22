@@ -121,7 +121,8 @@ mobs:register_egg("livingcavesmobs:grub", S("Grub"), "agrub.png")
 mobs:alias_mob("livingcavesmobs:grub", "livingcavesmobs:grub") -- compatibility
 
 minetest.register_craftitem(":livingcavesmobs:cocoon", {
-	description = S("Moth Cocoon"),
+	description = S("Moth Cocoon") .. '\n' ..
+    minetest.colorize('#DEB887', S('Hunger') .. ': 2'),
 	drawtype = "plantlike",
 	tiles = {"livingcavesmobs_cocoon.png"},
 	inventory_image = "livingcavesmobs_cocoon.png",
@@ -133,9 +134,15 @@ minetest.register_craftitem(":livingcavesmobs:cocoon", {
 		type = "fixed",
 		fixed = {-0.31, -0.5, -0.31, 0.31, 0.5, 0.31}
 	},
-	on_use = minetest.item_eat(2),
+	on_use = function(itemstack, user, pointed_thing)
+		local hunger_amount = minetest.get_item_group(itemstack:get_name(), "hunger_amount") or 0
+		if hunger_amount == 0 then 
+			return itemstack
+		end
+		minetest.item_eat(hunger_amount)
+	end,
 	sounds = default.node_sound_leaves_defaults(),
-	groups = {food = 1, flammable = 2, fleshy = 3, dig_immediate = 3},
+	groups = {food = 1, flammable = 2, fleshy = 3, dig_immediate = 3, hunger_amount = 2},
         drop = "livingcavesmobs:cocoon",
 	after_place_node = function(pos, placer)
 		if placer:is_player() then
@@ -145,7 +152,8 @@ minetest.register_craftitem(":livingcavesmobs:cocoon", {
 })
 
 minetest.register_craftitem(":livingcavesmobs:mothegg", {
-	description = S("Moth Egg"),
+	description = S("Moth Egg") .. '\n' ..
+    minetest.colorize('#DEB887', S('Hunger') .. ': 2'),
 	drawtype = "plantlike",
 	tiles = {"livingcavesmobs_mothegg.png"},
 	inventory_image = "livingcavesmobs_mothegg.png",
@@ -157,8 +165,14 @@ minetest.register_craftitem(":livingcavesmobs:mothegg", {
 		type = "fixed",
 		fixed = {-0.31, -0.5, -0.31, 0.31, 0.5, 0.31}
 	},
-	on_use = minetest.item_eat(2),
-	groups = {food = 1, flammable = 2, fleshy = 3, dig_immediate = 3},
+	on_use = function(itemstack, user, pointed_thing)
+		local hunger_amount = minetest.get_item_group(itemstack:get_name(), "hunger_amount") or 0
+		if hunger_amount == 0 then 
+			return itemstack
+		end
+		minetest.item_eat(hunger_amount)
+	end,
+	groups = {food = 1, flammable = 2, fleshy = 3, dig_immediate = 3, hunger_amount = 2},
         drop = "livingcavesmobs:mothegg",
 	sounds = default.node_sound_leaves_defaults(),
 	after_place_node = function(pos, placer)
